@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Clima por Ciudad</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="cerrarSesion()">Cerrar sesión</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form (ngSubmit)="buscarClima()">
+    <ion-item>
+      <ion-label position="floating">Ciudad</ion-label>
+      <ion-input [(ngModel)]="ciudad" name="ciudad"></ion-input>
+    </ion-item>
+    <ion-button expand="block" type="submit">Buscar clima</ion-button>
+  </form>
+
+  <ion-card *ngIf="clima">
+    <ion-card-header>
+      <ion-card-title>{{ clima.name }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Temperatura: {{ clima.main.temp }} °C<br>
+      Estado: {{ clima.weather[0].description }}<br>
+      Humedad: {{ clima.main.humidity }}%<br> 
+      País: {{ clima.sys.country }}<br>
+      ID: {{ clima.sys.id }}<br>
+      Amanecer: {{ clima.sys.sunrise | date:'shortTime':'UTC' }}<br>
+      Atardecer: {{ clima.sys.sunset | date:'shortTime':'UTC' }}<br>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-text color="danger" *ngIf="error">
+    {{ error }}
+  </ion-text>
+</ion-content>

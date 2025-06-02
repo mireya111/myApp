@@ -10,4 +10,8 @@ export const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
+  {
+    path: 'clima-ciudad',
+    loadComponent: () => import('./clima-ciudad/clima-ciudad.page').then( m => m.ClimaCiudadPage)
+  },
 ];
