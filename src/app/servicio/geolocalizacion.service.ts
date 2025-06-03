@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation'
-import { supabase } from '../supabase.client';
+//import { supabase } from '../supabase.client';
+import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +9,7 @@ import { supabase } from '../supabase.client';
 export class GeolocalizacionService {
   latitud: number | null = null;
   longitud: number | null = null;
-  supabase: any;
-  constructor() { 
-  }
+  constructor(private firestore: Firestore) {}
 
   async obtenerUbicacion() {
     try {
@@ -26,25 +25,20 @@ export class GeolocalizacionService {
   }
 
   async guardarUbicacion() {
-    if(this.latitud === null || this.longitud == null){
+    if (this.latitud === null || this.longitud == null) {
       console.log('No se ha obtenido la ubicación');
       return;
-    } 
-    else {
-      try{
-        const { data, error } = await supabase
-          .from('ubicaciones')
-          .insert([
-            { latitud: this.latitud, longitud: this.longitud }
-          ]);
-        if (error) {
-          console.error('Error al guardar la ubicación:', error);
-        } else {
-          console.log('Ubicación guardada:', data);
-        }
-      } catch(error) {
-        console.error('Error al guardar la ubicación:', error);
-      }
+    }
+    try {
+      const ubicacionesRef = collection(this.firestore, 'ubicacionesMensajes');
+      await addDoc(ubicacionesRef, {
+        latitud: this.latitud,
+        longitud: this.longitud,
+        fecha: new Date()
+      });
+      console.log('Ubicación guardada en Firebase');
+    } catch (error) {
+      console.error('Error al guardar la ubicación en Firebase:', error);
     }
   }
 }

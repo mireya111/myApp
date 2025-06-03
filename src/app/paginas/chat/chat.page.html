@@ -7,9 +7,22 @@
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let msg of mensajes">
+      <!-- Foto de perfil SIEMPRE visible -->
+      <img *ngIf="msg.fotoPerfilUrl" [src]="msg.fotoPerfilUrl" style="width:40px;height:40px;border-radius:50%;margin-right:8px;">
       <ion-label>
-        <strong>{{ msg.email }}</strong>: {{ msg.contenido }}<br>
-        <img *ngIf="msg.url" [src]="msg.url" style="max-width: 200px;"/>
+        <strong>{{ msg.email }}</strong>:
+        <ng-container *ngIf="msg.contenido && msg.contenido.startsWith('Ubicación:'); else textoNormal">
+          <a [href]="msg.contenido.split('Ubicación: ')[1]" target="_blank">
+            Ver ubicación en Google Maps
+          </a>
+        </ng-container>
+        <ng-template #textoNormal>
+          {{ msg.contenido }}
+        </ng-template>
+        <!-- Imagen del mensaje, debajo del texto -->
+        <div *ngIf="msg.url" style="margin-top:8px;">
+          <img [src]="msg.url" style="max-width: 200px;"/>
+        </div>
       </ion-label>
     </ion-item>
   </ion-list>
@@ -23,4 +36,8 @@
     </ion-item>
     <ion-button expand="block" type="submit">Enviar</ion-button>
   </form>
+  <!-- Botón para enviar ubicación -->
+  <ion-button expand="block" color="tertiary" (click)="enviarUbicacionComoMensaje()">
+    Enviar su ubicación en tiempo real
+  </ion-button>
 </ion-content>

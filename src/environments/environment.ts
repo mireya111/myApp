@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-  apiKey: "AIzaSyAap9r82buIPdTT_l7ppgm3L94j2POZeIM",
-  authDomain: "formulario-2b1c0.firebaseapp.com",
-  projectId: "formulario-2b1c0",
-  storageBucket: "formulario-2b1c0.firebasestorage.app",
-  messagingSenderId: "951322460453",
-  appId: "1:951322460453:web:081a7042d37f4e8d56dacc",
-  measurementId: "G-43PL12YJ5Q", 
+  apiKey: "AIzaSyC1u3_UQaxfZl22pPYV1PJ7tiTKWCgK0p8",
+  authDomain: "login-1257f.firebaseapp.com",
+  projectId: "login-1257f",
+  storageBucket: "login-1257f.firebasestorage.app",
+  messagingSenderId: "232815289928",
+  appId: "1:232815289928:web:9add50951a9f519e4c1a7d",
+  measurementId: "G-5G18BC34QH"
 }, 
   apiKey: '6ba7894400199b087c9105c8b069c0bf', 
   supabaseURL: 'https://sodlregonixbebwnvdxf.supabase.co',

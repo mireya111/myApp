@@ -16,6 +16,10 @@
       <ion-label position="floating">Contraseña</ion-label>
       <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-label>Foto de perfil</ion-label>
+      <input type="file" (change)="onFileSelected($event)" accept="image/*">
+    </ion-item>
     <ion-button expand="block" (click)="registrarUsuario()">Registrar</ion-button>
     <ion-button expand="block" color="secondary" (click)="loginUsuario()">Iniciar sesión</ion-button>
   </form>

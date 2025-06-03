@@ -33,16 +33,21 @@ export class ChatService {
   }
 
   // Guardar mensaje en la tabla con la URL de la imagen
-  async sendMessage(email: string, contenido: string, imageFile?: File) {
-    let url = null;
-    if (imageFile) {
-      url = await this.uploadImage(imageFile);
-    }
-    const { error } = await supabase.from('messagesConImage').insert([{ email, contenido, url }]);
-    if (error) {
-      console.error('Error guardando mensaje:', error);
-    }
+  async sendMessage(email: string, contenido: string, imageFile?: File, fotoPerfilUrl?: string) {
+  let url = null; // <-- la imagen del mensaje va en "url"
+  if (imageFile) {
+    url = await this.uploadImage(imageFile);
   }
+  const { error } = await supabase.from('messagesConImage').insert([{
+    email,
+    contenido,
+    url,             // Imagen adjunta al mensaje
+    fotoPerfilUrl    // Foto de perfil del usuario
+  }]);
+  if (error) {
+    console.error('Error guardando mensaje:', error);
+  }
+}
 
   async getMessages() {
     const { data, error } = await supabase
