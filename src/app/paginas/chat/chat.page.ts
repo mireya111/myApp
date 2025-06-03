@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AutenticacionService } from '../../services/autenticacion.service';
 import { GeolocalizacionService } from '../../servicio/geolocalizacion.service';
+import { ApiClimaService } from '../../services/api-clima.service';
 import { 
   IonContent, 
   IonHeader, 
@@ -15,7 +16,7 @@ import {
   IonButton 
 } from '@ionic/angular/standalone';
 import { ChatService } from '../../servicio/chat.service';
-
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.page.html',
@@ -41,8 +42,9 @@ export class ChatPage implements OnInit {
   imagen: File | null = null;
   email: string = ''; 
   fotoUrl: string = '';
+  ciudadClima: string = '';
 
-  constructor(private chatService: ChatService, private autenticacion: AutenticacionService, private geolocalizacion: GeolocalizacionService  ) {}
+  constructor(private chatService: ChatService, private autenticacion: AutenticacionService, private geolocalizacion: GeolocalizacionService, private apiClimaService: ApiClimaService ) {}
 
   async ngOnInit() {
     // Obtén el usuario actual desde Supabase Auth
@@ -91,6 +93,56 @@ export class ChatPage implements OnInit {
     alert('Ubicación enviada y guardada en Firebase');
   } else {
     alert('No se pudo obtener la ubicación');
+  }
+}
+
+async tomarFotoYEnviar() {
+    try {
+      const image = await Camera.getPhoto({
+        quality: 80,
+        allowEditing: false,
+        resultType: CameraResultType.DataUrl,
+        source: CameraSource.Camera
+      });
+
+      // Convierte la imagen a un archivo File
+      const response = await fetch(image.dataUrl!);
+      const blob = await response.blob();
+      const file = new File([blob], `foto_chat_${Date.now()}.jpeg`, { type: 'image/jpeg' });
+
+      // Usa el mismo flujo que enviarMensaje
+      await this.chatService.sendMessage(
+        this.email,
+        '', // sin texto
+        file,
+        this.fotoUrl
+      );
+      alert('Imagen enviada');
+    } catch (error) {
+      alert('No se pudo capturar la imagen');
+      console.error(error);
+    }
+  }
+
+  async enviarClimaComoMensaje() {
+  if (!this.ciudadClima) {
+    alert('Escribe una ciudad');
+    return;
+  }
+  try {
+    const clima: any = await this.apiClimaService.obtenerElClimaDeCiudad(this.ciudadClima).toPromise();
+    const mensajeClima = `Clima en ${clima.name}: ${clima.weather[0].description}, ${clima.main.temp}°C`;
+    await this.chatService.sendMessage(
+      this.email,
+      mensajeClima,
+      undefined,
+      this.fotoUrl
+    );
+    // Guardar en Firestore (opcional)
+    await this.apiClimaService.guardarCiudadBuscada(clima);
+    this.ciudadClima = '';
+  } catch (error) {
+    alert('No se pudo obtener el clima');
   }
 }
 }

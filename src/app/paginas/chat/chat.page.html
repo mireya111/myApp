@@ -36,8 +36,20 @@
     </ion-item>
     <ion-button expand="block" type="submit">Enviar</ion-button>
   </form>
+  <!-- Botón para tomar foto y enviar -->
+  <ion-button expand="block" color="primary" (click)="tomarFotoYEnviar()">
+    Tomar foto y enviar
+  </ion-button>
+
   <!-- Botón para enviar ubicación -->
   <ion-button expand="block" color="tertiary" (click)="enviarUbicacionComoMensaje()">
     Enviar su ubicación en tiempo real
   </ion-button>
+
+  <!-- Campo y botón para enviar clima -->
+  <ion-item>
+    <ion-input [(ngModel)]="ciudadClima" name="ciudadClima" placeholder="Ciudad para clima"></ion-input>
+    <ion-button (click)="enviarClimaComoMensaje()">Enviar clima</ion-button>
+  </ion-item>
+
 </ion-content>
