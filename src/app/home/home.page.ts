@@ -22,19 +22,34 @@ export class HomePage {
   }
 
   async registrarUsuario() {
-    let fotoUrl = '';
-    if (this.foto) {
-      fotoUrl = await this.autenticacion.subirFotoASupabase(this.foto, this.email);
-    }
-    const userRegistrado = await this.autenticacion.register(this.email, this.password, fotoUrl);
-    if (userRegistrado) {
-      alert('Usuario registrado con éxito');
-      console.log('Usuario registrado con éxito');
-    } else {
-      alert('Error al registrar el usuario');
-      console.log('Error al registrar el usuario');
-    }
+  this.email = this.email.trim();
+  this.password = this.password.trim();
+
+  if (!this.email || !this.password) {
+    alert('Debes ingresar un correo y una contraseña válidos');
+    return;
   }
+  if (!this.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+    alert('El correo no es válido');
+    return;
+  }
+  if (this.password.length < 6) {
+    alert('La contraseña debe tener al menos 6 caracteres');
+    return;
+  }
+  let fotoUrl = '';
+  if (this.foto) {
+    fotoUrl = await this.autenticacion.subirFotoASupabase(this.foto, this.email);
+  }
+  const userRegistrado = await this.autenticacion.register(this.email, this.password, fotoUrl);
+  if (userRegistrado) {
+    alert('Usuario registrado con éxito');
+    console.log('Usuario registrado con éxito');
+  } else {
+    alert('Error al registrar el usuario');
+    console.log('Error al registrar el usuario');
+  }
+}
 
   async loginUsuario() {
     const userLogueado = await this.autenticacion.login(this.email, this.password);

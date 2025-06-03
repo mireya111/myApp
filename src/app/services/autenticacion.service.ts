@@ -34,10 +34,13 @@ export class AutenticacionService {
   }
 
   async login(email: string, password: string) {
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) return null;
-    return data.user;
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+  if (error) {
+    console.error('Supabase login error:', error.message);
+    return null;
   }
+  return data.user;
+}
 
   async getUsuarioActual() {
     const { data } = await supabase.auth.getUser();
