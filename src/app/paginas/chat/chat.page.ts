@@ -68,6 +68,8 @@ export class ChatPage implements OnInit {
 
   async enviarMensaje() {
     if (!this.contenido && !this.imagen) return;
+    const contenidoTemp = this.contenido;
+    const imagenTemp = this.imagen;
     await this.chatService.sendMessage(
       this.email,
       this.contenido,
@@ -76,7 +78,14 @@ export class ChatPage implements OnInit {
     );
     this.contenido = '';
     this.imagen = null;
-  }
+    // Mostrar el mensaje de inmediato
+    this.mensajes.push({
+      email: this.email,
+      contenido: contenidoTemp,
+      url: imagenTemp ? URL.createObjectURL(imagenTemp) : undefined,
+      fotoPerfilUrl: this.fotoUrl
+    });
+  };
 
   async enviarUbicacionComoMensaje() {
   const ubi = await this.geolocalizacion.obtenerUbicacion();

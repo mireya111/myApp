@@ -1,0 +1,27 @@
+.boton-gradiente-azul {
+  background: linear-gradient(90deg, #4f8cff 0%, #38b6ff 100%) !important;
+  color: #fff !important;
+  border-radius: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin: 8px 0;
+  box-shadow: 0 2px 8px rgba(79, 140, 255, 0.08);
+}
+
+.boton-gradiente-verde {
+  background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%) !important;
+  color: #fff !important;
+  border-radius: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin: 8px 0;
+  box-shadow: 0 2px 8px rgba(67, 233, 123, 0.08);
+}
+
+.boton-clima {
+  background: linear-gradient(90deg, #4f8cff 0%, #38b6ff 100%) !important;
+  color: #fff !important;
+  border-radius: 10px;
+  margin-left: 8px;
+  font-weight: 600;
+}

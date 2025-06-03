@@ -1,26 +1,31 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
+  <ion-toolbar style="background: linear-gradient(90deg, #4f8cff 0%, #38b6ff 100%); color: #fff;">
+    <ion-title style="font-weight: bold; letter-spacing: 1px;">
       Registro y Login
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <form>
-    <ion-item>
-      <ion-label position="floating">Correo electrónico</ion-label>
+<ion-content [fullscreen]="true" style="background: linear-gradient(135deg, #f8fafc 0%, #e0e7ef 100%);">
+  <form style="max-width: 400px; margin: 48px auto; background: #fff; border-radius: 22px; box-shadow: 0 4px 24px rgba(60,60,120,0.12); padding: 36px 28px;">
+    <h2 style="text-align:center; color:#4f8cff; font-weight:700; margin-bottom:28px; letter-spacing:1px;">Bienvenido</h2>
+    <ion-item style="background: #f1f5fa; border-radius: 12px; margin-bottom: 22px; box-shadow:0 1px 4px rgba(79,140,255,0.04);">
+      <ion-label position="floating" style="color:#4f8cff; font-weight:600;">Correo electrónico</ion-label>
       <ion-input type="email" [(ngModel)]="email" name="email"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
+    <ion-item style="background: #f1f5fa; border-radius: 12px; margin-bottom: 22px; box-shadow:0 1px 4px rgba(79,140,255,0.04);">
+      <ion-label position="floating" style="color:#4f8cff; font-weight:600;">Contraseña</ion-label>
       <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label>Foto de perfil</ion-label>
-      <input type="file" (change)="onFileSelected($event)" accept="image/*">
+    <ion-item style="background: #f1f5fa; border-radius: 12px; margin-bottom: 28px; box-shadow:0 1px 4px rgba(79,140,255,0.04); align-items:center;">
+      <ion-label style="color:#4f8cff; font-weight:600;">Foto de perfil</ion-label>
+      <input type="file" (change)="onFileSelected($event)" accept="image/*" style="padding:8px; margin-left:12px;">
     </ion-item>
-    <ion-button expand="block" (click)="registrarUsuario()">Registrar</ion-button>
-    <ion-button expand="block" color="secondary" (click)="loginUsuario()">Iniciar sesión</ion-button>
+    <ion-button expand="block" (click)="registrarUsuario()" style="margin-bottom: 18px; border-radius:14px; font-weight:700; letter-spacing:0.5px; background: linear-gradient(90deg, #4f8cff 0%, #38b6ff 100%); color:#fff; font-size:1.1em; box-shadow:0 2px 8px rgba(79,140,255,0.10);">
+      Registrar
+    </ion-button>
+    <ion-button expand="block" color="secondary" (click)="loginUsuario()" style="border-radius:14px; font-weight:700; letter-spacing:0.5px; font-size:1.1em; box-shadow:0 2px 8px rgba(79,140,255,0.08);">
+      Iniciar sesión
+    </ion-button>
   </form>
 </ion-content>
