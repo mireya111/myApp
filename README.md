@@ -23,7 +23,8 @@ App de chat que permite:
 ![image](https://github.com/user-attachments/assets/7aa3369e-28c8-41b4-8ab0-31a7b7c52724)
 ![image](https://github.com/user-attachments/assets/6a4b6e8c-9f0b-4183-b6ff-121750da4273)
 ![image](https://github.com/user-attachments/assets/cfd91b44-034e-4c08-822f-7c00c881e32d)
-
+![image](https://github.com/user-attachments/assets/197d8967-54b3-4295-b64b-18cce97497d0)
+![image](https://github.com/user-attachments/assets/755d007d-0ab3-4d6a-8396-0db1386cc5bd)
 
 ---
 
