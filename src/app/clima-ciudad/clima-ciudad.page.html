@@ -1,13 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Clima por Ciudad</ion-title>
-    <ion-buttons slot="end">
-      <ion-button color="danger" (click)="cerrarSesion()">Cerrar sesión</ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-buttons slot="end">
+    <ion-button color="danger" (click)="cerrarSesion()">Cerrar sesión</ion-button>
+  </ion-buttons>
+
   <form (ngSubmit)="buscarClima()">
     <ion-item>
       <ion-label position="floating">Ciudad</ion-label>
@@ -35,4 +36,9 @@
   <ion-text color="danger" *ngIf="error">
     {{ error }}
   </ion-text>
+
+
+  <ion-button expand="block" color="danger" (click)="irAubicacion()">
+    IR A UBICACIÓN 
+  </ion-button>
 </ion-content>

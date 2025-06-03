@@ -56,4 +56,8 @@ export class ClimaCiudadPage implements OnInit {
     await this.autenticacion.logout();
     this.router.navigate(['/home']);
   }
+
+  async irAubicacion() {
+    await this.router.navigate(['/geolocalizacion']);
+  }
 }

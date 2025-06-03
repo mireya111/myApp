@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Geolocalización</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Ubicación actual</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Latitud:</ion-label>
+        <ion-text>{{ latitud !== null ? latitud : 'No disponible' }}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Longitud:</ion-label>
+        <ion-text>{{ longitud !== null ? longitud : 'No disponible' }}</ion-text>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="block" (click)="ubicacion()">Obtener ubicación</ion-button>
+  <ion-button expand="block" color="success" (click)="guardarUbicacion()" [disabled]="latitud === null || longitud === null">
+    Guardar ubicación
+  </ion-button>
+  <ion-button expand="block" color="danger" (click)="abrirEnGoogleMaps()" [disabled]="latitud === null && longitud === null">
+    Abrir ubicación 
+  </ion-button>
+</ion-content>

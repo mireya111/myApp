@@ -13,7 +13,9 @@ export const environment = {
   appId: "1:951322460453:web:081a7042d37f4e8d56dacc",
   measurementId: "G-43PL12YJ5Q", 
 }, 
-  apiKey: '6ba7894400199b087c9105c8b069c0bf'
+  apiKey: '6ba7894400199b087c9105c8b069c0bf', 
+  supabaseURL: 'https://sodlregonixbebwnvdxf.supabase.co',
+  supabaseKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNvZGxyZWdvbml4YmVid252ZHhmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgyOTcyNTgsImV4cCI6MjA2Mzg3MzI1OH0.eyan4TXu8A1vo5YkedqofqvgC_NvmEkkgbBIXHGndak'
 };
 
 /*
